@@ -79,17 +79,16 @@ module Middleman
               end
             end
 
-            def files
-              return @files if defined?(@files)
-              @files = Dir["./build/**/.*", "./build/**/*"]
-                .reject{|f| File.directory?(f) }.map{|f| f.sub(/^(\.\/)?build\//, '/') }
+            def cf_files
+              files = Dir["./build/**/.*", "./build/**/*"]
+                .reject{|f| File.directory?(f) }.map{|f| f.sub(/^(?:\.\/)?build\//, '/') }
               # if :directory_indexes is active, we must invalidate both files and dirs
               # doing this 100% of the time, it would be nice if we could find of
-              @files += @files.map{|f| f.gsub(/\/index\.html$/, '/') }
-              @files.uniq!
+              files += files.map{|f| f.gsub(/\/index\.html$/, '/') }
+              files.uniq!
             end
 
-            invalidate(files)
+            invalidate(cf_files)
           end
         end
         alias :included :registered

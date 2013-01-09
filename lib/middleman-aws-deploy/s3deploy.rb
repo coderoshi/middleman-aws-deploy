@@ -63,7 +63,7 @@ module Middleman
 
             def files
               @files ||= Dir["./build/**/.*", "./build/**/*"]
-                .reject{|f| File.directory?(f) }.map{|f| f.sub(/^(\.\/)?build\//, '') }
+                .reject{|f| File.directory?(f) }.map{|f| f.sub(/^(?:\.\/)?build\//, '') }
             end
 
             # no need to upload an exact copy of an existing remote file
