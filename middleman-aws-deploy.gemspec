@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -z -- {fixtures,features}/*`.split("\0")
   s.require_paths = ["lib"]
   
-  s.add_dependency("middleman-core", ["~> 3.0.0"])
+  s.add_dependency("middleman-core", [">= 3.0.0", "< 3.2"])
   s.add_dependency("ruby-hmac", ["~> 0.4.0"])
   s.add_dependency("parallel", ["~> 0.6.1"])
   s.add_dependency("fog", ["~> 1.8.0"])
